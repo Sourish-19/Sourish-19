@@ -1,49 +1,14 @@
 {
   "username": "Sourish-19",
-  "total_contributions": 151,
+  "total_contributions": 152,
   "current_streak": 0,
-  "longest_streak": 19,
+  "longest_streak": 20,
   "best_day": {
     "date": "2026-01-14",
     "count": 15
   },
-  "updated_at": "2026-08-15 06:57:12Z",
+  "updated_at": "2026-08-16 06:58:19Z",
   "days": [
-    {
-      "date": "2025-08-10",
-      "count": 0,
-      "level": 0
-    },
-    {
-      "date": "2025-08-11",
-      "count": 0,
-      "level": 0
-    },
-    {
-      "date": "2025-08-12",
-      "count": 0,
-      "level": 0
-    },
-    {
-      "date": "2025-08-13",
-      "count": 0,
-      "level": 0
-    },
-    {
-      "date": "2025-08-14",
-      "count": 0,
-      "level": 0
-    },
-    {
-      "date": "2025-08-15",
-      "count": 0,
-      "level": 0
-    },
-    {
-      "date": "2025-08-16",
-      "count": 0,
-      "level": 0
-    },
     {
       "date": "2025-08-17",
       "count": 0,
@@ -1861,6 +1826,11 @@
     },
     {
       "date": "2026-08-15",
+      "count": 1,
+      "level": 1
+    },
+    {
+      "date": "2026-08-16",
       "count": 0,
       "level": 0
     }

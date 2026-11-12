@@ -1,9 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 490 320" width="490" height="320">
 <style>
-  .card-bg { fill: #0d1117; stroke: #30363d; stroke-width: 1px; rx: 6px; }
-  .title-bar { fill: #161b22; rx: 6px 6px 0 0; }
+  .card-bg { fill: #0d1117; stroke: #30363d; stroke-width: 1px; }
+  .title-bar { fill: #161b22; }
   .title-text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace; font-size: 12px; fill: #8b949e; font-weight: 600; }
-  .dot { r: 5.5px; }
   .dot-red { fill: #ff5f56; }
   .dot-yellow { fill: #ffbd2e; }
   .dot-green { fill: #27c93f; }
@@ -15,12 +14,17 @@
     100% { opacity: 1; transform: translateX(0); }
   }
   .animated-line { opacity: 0; animation: lineIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; opacity: 1 !important; transform: none !important; } }
 </style>
+<clipPath id="card"><rect width="490" height="320" rx="6" /></clipPath>
+<g clip-path="url(#card)">
 <rect width="490" height="320" class="card-bg" />
 <rect width="490" height="32" class="title-bar" />
-<circle cx="18" cy="16" class="dot dot-red" />
-<circle cx="34" cy="16" class="dot dot-yellow" />
-<circle cx="50" cy="16" class="dot dot-green" />
+</g>
+<rect x="0.5" y="0.5" width="489" height="319" rx="6" fill="none" stroke="#30363d" />
+<circle cx="18" cy="16" r="5.5" class="dot dot-red" />
+<circle cx="34" cy="16" r="5.5" class="dot dot-yellow" />
+<circle cx="50" cy="16" r="5.5" class="dot dot-green" />
 <text x="245.0" y="20" text-anchor="middle" class="title-text">sourish@github: ~ (neofetch)</text>
 <g class="animated-line" style="animation-delay: 0.15s;">
   <text x="20" y="58" class="code-text" fill="#58a6ff" font-weight="bold">sourish@github</text>
@@ -37,7 +41,7 @@
   <text x="20" y="110" class="code-text">
     <tspan class="key">Role</tspan>
     <tspan class="separator"> -&gt; </tspan>
-    <tspan fill="#79c0ff">UI/UX Designer & GenAI Developer</tspan>
+    <tspan fill="#79c0ff">UI/UX Designer &amp; GenAI Developer</tspan>
   </text>
 </g>
 <g class="animated-line" style="animation-delay: 0.39s;">
@@ -72,7 +76,7 @@
   <text x="20" y="240" class="code-text">
     <tspan class="key">Highlights</tspan>
     <tspan class="separator"> -&gt; </tspan>
-    <tspan fill="#e3b341">Crafting Serverless AI & Seamless Interfaces</tspan>
+    <tspan fill="#e3b341">Crafting Serverless AI &amp; Seamless Interfaces</tspan>
   </text>
 </g>
 <g class="animated-line" style="animation-delay: 0.79s;">

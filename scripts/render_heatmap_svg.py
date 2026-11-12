@@ -32,7 +32,7 @@ def render_heatmap_svg(json_path="data/contributions.json", output_path="contrib
     svg = []
     svg.append(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {svg_w} {svg_h}" width="{svg_w}" height="{svg_h}">')
     svg.append('<style>')
-    svg.append('  .bg { fill: #0d1117; stroke: #30363d; stroke-width: 1px; rx: 6px; }')
+    svg.append('  .bg { fill: #0d1117; stroke: #30363d; stroke-width: 1px; }')
     svg.append('  .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace; font-size: 13px; font-weight: 600; fill: #58a6ff; }')
     svg.append('  .label { font-family: "SFMono-Regular", Consolas, monospace; font-size: 10px; fill: #8b949e; }')
     svg.append('  .stats { font-family: "SFMono-Regular", Consolas, monospace; font-size: 11px; fill: #c9d1d9; }')
@@ -41,11 +41,12 @@ def render_heatmap_svg(json_path="data/contributions.json", output_path="contrib
     svg.append('    0% { opacity: 0; transform: scale(0.4) translateY(-10px); }')
     svg.append('    100% { opacity: 1; transform: scale(1) translateY(0); }')
     svg.append('  }')
-    svg.append('  .cell { opacity: 0; animation: diagFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards; transform-origin: center; }')
+    svg.append('  .cell { opacity: 0; animation: diagFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards; transform-box: fill-box; transform-origin: center; }')
+    svg.append('  @media (prefers-reduced-motion: reduce) { * { animation: none !important; opacity: 1 !important; transform: none !important; } }')
     svg.append('</style>')
 
     # Background card
-    svg.append(f'<rect width="{svg_w}" height="{svg_h}" class="bg" />')
+    svg.append(f'<rect x="0.5" y="0.5" width="{svg_w - 1}" height="{svg_h - 1}" rx="6" class="bg" />')
 
     # Card title
     svg.append(f'<text x="20" y="26" class="title">contrib-heatmap.svg — {total_contribs:,} contributions in the last year</text>')
@@ -63,17 +64,24 @@ def render_heatmap_svg(json_path="data/contributions.json", output_path="contrib
     last_month = -1
     month_positions = []
 
+    # Anchor columns on weeks starting Sunday so rows always match weekdays
+    if days:
+        first = datetime.strptime(days[0]["date"], "%Y-%m-%d")
+        lead = (first.weekday() + 1) % 7  # Sunday -> 0
+        last_dt = datetime.strptime(days[-1]["date"], "%Y-%m-%d")
+        total_cols = (lead + len(days) + 6) // 7
+        skip = max(0, total_cols - cols)  # keep the most recent 53 weeks
     for idx, day_info in enumerate(days):
-        col = idx // 7
-        row = idx % 7
-        if col < cols:
+        dt = datetime.strptime(day_info["date"], "%Y-%m-%d")
+        pos = lead + idx
+        col = pos // 7 - skip
+        row = (dt.weekday() + 1) % 7
+        if 0 <= col < cols:
             grid[col][row] = day_info
-            
-            # Detect month label positions
-            dt = datetime.strptime(day_info["date"], "%Y-%m-%d")
-            if dt.month != last_month:
+            # Label a month at the first week that starts inside it (like GitHub)
+            if row == 0 and dt.month != last_month:
                 last_month = dt.month
-                if col not in [m[0] for m in month_positions]:
+                if not month_positions or col - month_positions[-1][0] >= 3:
                     month_positions.append((col, MONTH_NAMES[dt.month - 1]))
 
     # Render month labels
@@ -102,8 +110,7 @@ def render_heatmap_svg(json_path="data/contributions.json", output_path="contrib
                 cnt = d_info.get("count", 0)
                 title_str = f"{cnt} contribution{'s' if cnt != 1 else ''} on {date_str}"
             else:
-                color = PALETTE[0]
-                title_str = "No contributions"
+                continue  # outside the year window (e.g. future days this week)
 
             diag_index = c + r
             delay = round(0.08 + diag_index * 0.009, 3)

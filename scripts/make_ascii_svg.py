@@ -43,10 +43,11 @@ def make_ascii_svg(input_path="source-prepped.png", output_path="sourish-ascii.s
     svg_lines.append(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {svg_width} {svg_height}" width="{svg_width}" height="{svg_height}">')
     svg_lines.append('<style>')
     svg_lines.append('  .ascii-text { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; font-size: 4.2px; fill: #8b949e; white-space: pre; }')
-    svg_lines.append('  .bg { fill: #0d1117; rx: 6px; }')
+    svg_lines.append('  .bg { fill: #0d1117; }')
+    svg_lines.append('  @media (prefers-reduced-motion: reduce) { .cursor { display: none; } }')
     svg_lines.append('  .cursor { fill: #58a6ff; }')
     svg_lines.append('</style>')
-    svg_lines.append(f'<rect width="{svg_width}" height="{svg_height}" class="bg" />')
+    svg_lines.append(f'<rect width="{svg_width}" height="{svg_height}" rx="6" class="bg" />')
     
     svg_lines.append('<defs>')
     for i in range(height):
@@ -72,7 +73,7 @@ def make_ascii_svg(input_path="source-prepped.png", output_path="sourish-ascii.s
     for i in range(height):
         y_pos = margin_y + i * line_h + 0.5
         begin_t = round(start_delay + i * row_dur, 2)
-        svg_lines.append(f'<rect y="{y_pos:.1f}" width="4" height="{line_h:.1f}" class="cursor">')
+        svg_lines.append(f'<rect x="{margin_x}" y="{y_pos:.1f}" opacity="0" width="4" height="{line_h:.1f}" class="cursor">')
         svg_lines.append(f'  <animate attributeName="x" from="{margin_x}" to="{svg_width - margin_x}" dur="{row_dur}s" begin="{begin_t}s" fill="freeze" />')
         svg_lines.append(f'  <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.99;1" dur="{row_dur}s" begin="{begin_t}s" fill="freeze" />')
         svg_lines.append('</rect>')
@@ -82,12 +83,8 @@ def make_ascii_svg(input_path="source-prepped.png", output_path="sourish-ascii.s
     content = "\n".join(svg_lines)
     with open(output_path, "w", encoding="utf-8") as f:
         f.write(content)
-    
-    # Also write to avi-ascii.svg for exact compatibility with article filename
-    with open("avi-ascii.svg", "w", encoding="utf-8") as f:
-        f.write(content)
 
-    print(f"ASCII SVG saved to {output_path} and avi-ascii.svg")
+    print(f"ASCII SVG saved to {output_path}")
 
 if __name__ == "__main__":
     inp = sys.argv[1] if len(sys.argv) > 1 else "source-prepped.png"

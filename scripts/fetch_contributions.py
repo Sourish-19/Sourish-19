@@ -92,14 +92,17 @@ def fetch_contributions(username="Sourish-19", output_path="data/contributions.j
             temp_streak = 0
 
     # Calculate current streak working backwards from today/latest
-    for d in reversed(days):
+    # The calendar's last cell is "today", which is still in progress:
+    # a 0 there should not break the streak.
+    tail = days[:-1] if days and days[-1]["count"] == 0 else days
+    for d in reversed(tail):
         if d["count"] > 0:
             current_streak += 1
         else:
             break
 
     # Calculate total in header text if present
-    header = soup.find(re.compile(r"h[23]"), text=re.compile(r"contributions", re.I))
+    header = soup.find(re.compile(r"h[23]"), string=re.compile(r"contributions", re.I))
     if header:
         h_match = re.search(r"([\d,]+)\s+contributions", header.text)
         if h_match:

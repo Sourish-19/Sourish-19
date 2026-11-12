@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 215" width="860" height="215">
 <style>
-  .bg { fill: #0d1117; stroke: #30363d; stroke-width: 1px; rx: 6px; }
+  .bg { fill: #0d1117; stroke: #30363d; stroke-width: 1px; }
   .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace; font-size: 13px; font-weight: 600; fill: #58a6ff; }
   .label { font-family: "SFMono-Regular", Consolas, monospace; font-size: 10px; fill: #8b949e; }
   .stats { font-family: "SFMono-Regular", Consolas, monospace; font-size: 11px; fill: #c9d1d9; }
@@ -9,22 +9,23 @@
     0% { opacity: 0; transform: scale(0.4) translateY(-10px); }
     100% { opacity: 1; transform: scale(1) translateY(0); }
   }
-  .cell { opacity: 0; animation: diagFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards; transform-origin: center; }
+  .cell { opacity: 0; animation: diagFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards; transform-box: fill-box; transform-origin: center; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; opacity: 1 !important; transform: none !important; } }
 </style>
-<rect width="860" height="215" class="bg" />
+<rect x="0.5" y="0.5" width="859" height="214" rx="6" class="bg" />
 <text x="20" y="26" class="title">contrib-heatmap.svg — 505 contributions in the last year</text>
 <text x="45.0" y="38" class="label">Nov</text>
-<text x="87.6" y="38" class="label">Dec</text>
-<text x="144.4" y="38" class="label">Jan</text>
+<text x="101.8" y="38" class="label">Dec</text>
+<text x="158.6" y="38" class="label">Jan</text>
 <text x="215.4" y="38" class="label">Feb</text>
 <text x="272.2" y="38" class="label">Mar</text>
-<text x="329.0" y="38" class="label">Apr</text>
-<text x="385.8" y="38" class="label">May</text>
-<text x="456.8" y="38" class="label">Jun</text>
-<text x="513.6" y="38" class="label">Jul</text>
-<text x="570.4" y="38" class="label">Aug</text>
-<text x="641.4" y="38" class="label">Sep</text>
-<text x="698.2" y="38" class="label">Oct</text>
+<text x="343.2" y="38" class="label">Apr</text>
+<text x="400.0" y="38" class="label">May</text>
+<text x="471.0" y="38" class="label">Jun</text>
+<text x="527.8" y="38" class="label">Jul</text>
+<text x="584.6" y="38" class="label">Aug</text>
+<text x="655.6" y="38" class="label">Sep</text>
+<text x="712.4" y="38" class="label">Oct</text>
 <text x="769.2" y="38" class="label">Nov</text>
 <text x="15" y="71.2" class="label">Mon</text>
 <text x="15" y="99.6" class="label">Wed</text>
@@ -1132,15 +1133,6 @@
 </rect>
 <rect x="783.4" y="90.6" width="11" height="11" rx="2.5" fill="#161b22" class="cell" style="animation-delay: 0.575s;">
   <title>0 contributions on 2026-11-11</title>
-</rect>
-<rect x="783.4" y="104.8" width="11" height="11" rx="2.5" fill="#161b22" class="cell" style="animation-delay: 0.584s;">
-  <title>No contributions</title>
-</rect>
-<rect x="783.4" y="119.0" width="11" height="11" rx="2.5" fill="#161b22" class="cell" style="animation-delay: 0.593s;">
-  <title>No contributions</title>
-</rect>
-<rect x="783.4" y="133.2" width="11" height="11" rx="2.5" fill="#161b22" class="cell" style="animation-delay: 0.602s;">
-  <title>No contributions</title>
 </rect>
 <text x="710" y="171.39999999999998" class="label">Less</text>
 <rect x="735" y="162.39999999999998" width="11" height="11" rx="2" fill="#161b22" />

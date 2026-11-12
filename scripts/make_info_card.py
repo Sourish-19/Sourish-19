@@ -1,5 +1,6 @@
 import os
 import sys
+from xml.sax.saxutils import escape
 
 def make_info_card(output_path="info-card.svg"):
     is_static = os.environ.get("STATIC", "0") == "1"
@@ -22,10 +23,9 @@ def make_info_card(output_path="info-card.svg"):
     svg = []
     svg.append(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" width="{width}" height="{height}">')
     svg.append('<style>')
-    svg.append('  .card-bg { fill: #0d1117; stroke: #30363d; stroke-width: 1px; rx: 6px; }')
-    svg.append('  .title-bar { fill: #161b22; rx: 6px 6px 0 0; }')
+    svg.append('  .card-bg { fill: #0d1117; stroke: #30363d; stroke-width: 1px; }')
+    svg.append('  .title-bar { fill: #161b22; }')
     svg.append('  .title-text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace; font-size: 12px; fill: #8b949e; font-weight: 600; }')
-    svg.append('  .dot { r: 5.5px; }')
     svg.append('  .dot-red { fill: #ff5f56; }')
     svg.append('  .dot-yellow { fill: #ffbd2e; }')
     svg.append('  .dot-green { fill: #27c93f; }')
@@ -39,17 +39,22 @@ def make_info_card(output_path="info-card.svg"):
         svg.append('    100% { opacity: 1; transform: translateX(0); }')
         svg.append('  }')
         svg.append('  .animated-line { opacity: 0; animation: lineIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards; }')
+        svg.append('  @media (prefers-reduced-motion: reduce) { * { animation: none !important; opacity: 1 !important; transform: none !important; } }')
 
     svg.append('</style>')
     
     # Card container
+    svg.append(f'<clipPath id="card"><rect width="{width}" height="{height}" rx="6" /></clipPath>')
+    svg.append('<g clip-path="url(#card)">')
     svg.append(f'<rect width="{width}" height="{height}" class="card-bg" />')
-    
+
     # Title bar
     svg.append(f'<rect width="{width}" height="32" class="title-bar" />')
-    svg.append('<circle cx="18" cy="16" class="dot dot-red" />')
-    svg.append('<circle cx="34" cy="16" class="dot dot-yellow" />')
-    svg.append('<circle cx="50" cy="16" class="dot dot-green" />')
+    svg.append('</g>')
+    svg.append(f'<rect x="0.5" y="0.5" width="{width - 1}" height="{height - 1}" rx="6" fill="none" stroke="#30363d" />')
+    svg.append('<circle cx="18" cy="16" r="5.5" class="dot dot-red" />')
+    svg.append('<circle cx="34" cy="16" r="5.5" class="dot dot-yellow" />')
+    svg.append('<circle cx="50" cy="16" r="5.5" class="dot dot-green" />')
     svg.append(f'<text x="{width / 2}" y="20" text-anchor="middle" class="title-text">sourish@github: ~ (neofetch)</text>')
     
     # Lines content
@@ -57,6 +62,7 @@ def make_info_card(output_path="info-card.svg"):
     line_spacing = 26
     
     for i, (key, value, val_color, is_header) in enumerate(items):
+        key, value = escape(key), escape(value)  # '&' etc. would make the SVG invalid
         y = start_y + i * line_spacing
         delay = round(0.15 + i * 0.08, 2)
         anim_class = "" if is_static else f' class="animated-line" style="animation-delay: {delay}s;"'

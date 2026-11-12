@@ -1,5 +1,4 @@
-requests==2.32.3
-beautifulsoup4==4.12.3
+# Local-only: photo prep and portrait (CI uses requirements-ci.txt)
 pillow
 numpy
 opencv-python

@@ -1,0 +1,134 @@
+{
+  "username": "Sourish-19",
+  "public_repos": 16,
+  "repos": [
+    {
+      "name": "Sourish-19",
+      "description": "",
+      "language": "Python",
+      "stars": 0,
+      "pushed_at": "2026-11-11T14:19:52Z",
+      "url": "https://github.com/Sourish-19/Sourish-19"
+    },
+    {
+      "name": "rock-paper-scissors",
+      "description": "",
+      "language": "HTML",
+      "stars": 1,
+      "pushed_at": "2026-10-19T05:06:44Z",
+      "url": "https://github.com/Sourish-19/rock-paper-scissors"
+    },
+    {
+      "name": "isl",
+      "description": "",
+      "language": "Python",
+      "stars": 0,
+      "pushed_at": "2026-10-11T06:58:30Z",
+      "url": "https://github.com/Sourish-19/isl"
+    },
+    {
+      "name": "cute",
+      "description": "",
+      "language": "JavaScript",
+      "stars": 0,
+      "pushed_at": "2026-10-03T06:16:03Z",
+      "url": "https://github.com/Sourish-19/cute"
+    },
+    {
+      "name": "sih_orca_final",
+      "description": "",
+      "language": "Python",
+      "stars": 0,
+      "pushed_at": "2026-09-04T22:28:46Z",
+      "url": "https://github.com/Sourish-19/sih_orca_final"
+    },
+    {
+      "name": "ORCA-SIH",
+      "description": "",
+      "language": "Python",
+      "stars": 0,
+      "pushed_at": "2026-09-04T22:19:04Z",
+      "url": "https://github.com/Sourish-19/ORCA-SIH"
+    },
+    {
+      "name": "ORCA",
+      "description": "",
+      "language": "TypeScript",
+      "stars": 0,
+      "pushed_at": "2026-09-02T06:40:38Z",
+      "url": "https://github.com/Sourish-19/ORCA"
+    },
+    {
+      "name": "indic-voice",
+      "description": "",
+      "language": "Python",
+      "stars": 0,
+      "pushed_at": "2026-08-22T18:23:10Z",
+      "url": "https://github.com/Sourish-19/indic-voice"
+    },
+    {
+      "name": "AUV",
+      "description": "",
+      "language": "TypeScript",
+      "stars": 0,
+      "pushed_at": "2026-05-21T04:42:17Z",
+      "url": "https://github.com/Sourish-19/AUV"
+    },
+    {
+      "name": "StreamIQ",
+      "description": "StreamIQ - A Directorial Suite Content Analytics Dashsboard. Full-stack MERN application featuring complex MongoDB aggregation pipelines, regex filtering, and live TMDB streaming data integration built utilizing Vite, React, and Tailwind CSS.",
+      "language": "TypeScript",
+      "stars": 0,
+      "pushed_at": "2026-04-14T19:38:06Z",
+      "url": "https://github.com/Sourish-19/StreamIQ"
+    },
+    {
+      "name": "ai-pr-reviewer",
+      "description": "An AI-powered code review CLI & Web Dashboard featuring a premium glassmorphic UI. Instantly analyzes GitHub PR diffs for vulnerabilities and optimizations without uploading your codebase to a third-party app.",
+      "language": "TypeScript",
+      "stars": 0,
+      "pushed_at": "2026-04-11T11:42:13Z",
+      "url": "https://github.com/Sourish-19/ai-pr-reviewer"
+    },
+    {
+      "name": "SkillRoute-AI",
+      "description": "SkillRoute-AI acts as an orchestrator to evaluate intent, select and invoke skill implementations, manage responses, and provide observability and fallbacks.",
+      "language": "TypeScript",
+      "stars": 0,
+      "pushed_at": "2026-01-29T12:25:10Z",
+      "url": "https://github.com/Sourish-19/SkillRoute-AI"
+    },
+    {
+      "name": "neon-racer",
+      "description": "Neon Racer is a high-octane 3D infinite runner that runs entirely in your browser. Unlike traditional keyboard games, this uses Neural Link Technology (powered by MediaPipe FaceMesh) to track your head position. Simply lean left or right to steer your cyber-car through the neon-drenched city.",
+      "language": "JavaScript",
+      "stars": 0,
+      "pushed_at": "2026-01-21T16:57:02Z",
+      "url": "https://github.com/Sourish-19/neon-racer"
+    },
+    {
+      "name": "primordial-omega",
+      "description": "Gravity Garage \ud83d\ude97\ud83d\udc4b \u2014 A 3D interactive showcase where you generate and control cars with hand gestures. Built with Vanilla JS, Three.js, and MediaPipe.",
+      "language": "HTML",
+      "stars": 0,
+      "pushed_at": "2026-01-14T10:31:21Z",
+      "url": "https://github.com/Sourish-19/primordial-omega"
+    },
+    {
+      "name": "IntelliNote-AI",
+      "description": "AI-powered note-taking app built with TypeScript and HTML. Generate, organize, and summarize notes using Gemini API. Features smart suggestions, real-time collaboration, and easy export/import. Clean, user-friendly interface for productivity.",
+      "language": "TypeScript",
+      "stars": 0,
+      "pushed_at": "2025-10-08T18:07:47Z",
+      "url": "https://github.com/Sourish-19/IntelliNote-AI"
+    },
+    {
+      "name": "Axiom",
+      "description": "A modern, visually rich landing page for the MAHE Innovation Centre\u00a0(MIC).",
+      "language": "TypeScript",
+      "stars": 0,
+      "pushed_at": "2025-10-04T14:33:10Z",
+      "url": "https://github.com/Sourish-19/Axiom"
+    }
+  ]
+}

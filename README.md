@@ -1,16 +1,24 @@
-<div align="center">
+<p align="center">
+  <img src="./cards/hero.svg" width="100%" alt="Sourish — UI/UX designer and GenAI developer" />
+</p>
 
-<h3><code>sourish@github ~ $ ./contributions.sh</code></h3>
-<img src="./contrib-heatmap.svg" width="860" alt="Live Contribution Heatmap" />
+<p align="center">
+  <img src="./cards/graph.svg" width="100%" alt="Contribution graph for the last year" />
+</p>
 
-<br><br>
+<p align="center">
+  <img src="./cards/activity.svg" width="100%" alt="Contributions per month, streaks and busiest day" />
+</p>
 
-<h3><code>sourish@github ~ $ whoami</code></h3>
-<table>
-  <tr>
-    <td valign="top"><img src="./sourish-ascii.svg" width="370" alt="ASCII Portrait" /></td>
-    <td valign="top"><img src="./info-card.svg" width="490" alt="Neofetch Card" /></td>
-  </tr>
-</table>
+<p align="center">
+  <a href="https://github.com/Sourish-19/Axiom"><img src="./cards/tile-design.svg" width="32.5%" alt="Design: Figma design systems, usability prototyping" /></a>
+  <a href="https://github.com/Sourish-19/SkillRoute-AI"><img src="./cards/tile-genai.svg" width="32.5%" alt="GenAI: RAG, QLoRA, Qwen2.5, Gemini API, PyTorch" /></a>
+  <a href="https://github.com/Sourish-19?tab=repositories"><img src="./cards/tile-build.svg" width="32.5%" alt="Build: React, TypeScript, FastAPI, Node, MongoDB, Azure" /></a>
+</p>
 
-</div>
+<p align="center">
+  <a href="https://github.com/Sourish-19/ai-pr-reviewer"><img src="./cards/repo-1.svg" width="49%" alt="ai-pr-reviewer" /></a>
+  <a href="https://github.com/Sourish-19/SkillRoute-AI"><img src="./cards/repo-2.svg" width="49%" alt="SkillRoute-AI" /></a>
+  <a href="https://github.com/Sourish-19/StreamIQ"><img src="./cards/repo-3.svg" width="49%" alt="StreamIQ" /></a>
+  <a href="https://github.com/Sourish-19/neon-racer"><img src="./cards/repo-4.svg" width="49%" alt="neon-racer" /></a>
+</p>

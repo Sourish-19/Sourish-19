@@ -11,7 +11,7 @@ permissions:
   contents: write
 
 jobs:
-  heatmap:
+  cards:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,9 +19,15 @@ jobs:
         with:
           python-version: "3.11"
       - run: pip install -r scripts/requirements-ci.txt
-      - run: python scripts/fetch_contributions.py
-      - run: python scripts/render_heatmap_svg.py
+      - name: Scrape contribution calendar
+        run: python scripts/fetch_contributions.py
+      - name: Fetch public repos
+        run: python scripts/fetch_repos.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Render README cards (hero, graph, activity, tiles, repos)
+        run: python scripts/render_readme_cards.py
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore: refresh contribution graph [skip ci]"
-          file_pattern: "data/contributions.json contrib-heatmap.svg"
+          commit_message: "chore: refresh profile cards [skip ci]"
+          file_pattern: "data/contributions.json data/repos.json cards/*.svg"

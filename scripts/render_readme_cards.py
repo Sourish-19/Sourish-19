@@ -11,7 +11,7 @@ import base64
 import json
 import os
 from collections import OrderedDict
-from datetime import date, datetime
+from datetime import datetime
 from pathlib import Path
 from xml.sax.saxutils import escape
 
@@ -22,29 +22,103 @@ STATIC = os.environ.get("STATIC") == "1"
 # ------------------------------------------------------------------ profile
 USER = "Sourish-19"
 NAME = "Sourish"
+FULL_NAME = "Sourish Sri Vignesh S"
 TAGLINE = ("UI/UX designer &", "GenAI developer.")
 ABOUT = (
-    "Computer Engineering · B.Tech",
-    "Creative design, engineered with logical precision.",
+    "B.E. Computer Engineering · MIT Bengaluru · '28",
+    "Previously UI/UX Designer @ Crescentia One",
 )
 TILES = [
     {
         "key": "design", "no": "01", "word": "Design", "color": "#D9481F",
-        "lines": ["Figma design systems", "Usability prototyping", "Interfaces with intent"],
-        "cta": "see the work",
+        "lines": ["1st place × 2, UI/UX Sprint", "Figma prototypes → handoff", "Usability tests that iterate"],
+        "cta": "connect on LinkedIn",
     },
     {
         "key": "genai", "no": "02", "word": "GenAI", "color": "#6B4EFF",
-        "lines": ["RAG pipelines · QLoRA", "Qwen2.5 · Gemini API", "PyTorch experiments"],
-        "cta": "see the agents",
+        "lines": ["QLoRA + DPO on Qwen2.5-7B", "Hybrid RAG · FAISS + BM25", "Red-teaming & guardrails"],
+        "cta": "see IndicVoice RAG",
     },
     {
         "key": "build", "no": "03", "word": "Build", "color": "#0E8F69",
-        "lines": ["React · TypeScript", "FastAPI · Node · Mongo", "Shipped on Azure"],
+        "lines": ["FastAPI · React · TypeScript", "Azure · Modal · Firebase", "Serverless, scale-to-zero"],
         "cta": "all repositories",
     },
 ]
-FEATURED = ["ai-pr-reviewer", "SkillRoute-AI", "StreamIQ", "neon-racer"]
+
+# "By the numbers": (value, decimals, prefix, suffix, label line 1, label line 2)
+NUMBERS = [
+    (24.55, 2, "", " ms", "P50 retrieval latency", "IndicVoice RAG"),
+    (95, 0, "", "%+", "Socratic compliance", "fine-tuned Qwen2.5-7B"),
+    (11298, 0, "", "", "passages indexed", "FAISS + BM25 hybrid"),
+    (2, 0, "", "×", "UI/UX Sprint wins", "TechSolstice '24 & '25"),
+    (10, 0, "Top ", "", "of 1,500+ teams", "PEC HACK 3.0"),
+]
+
+# Project cards; "repo" pulls live metadata from data/repos.json when public
+PROJECTS = [
+    {
+        "name": "IndicVoice RAG", "repo": "indic-voice", "kicker": "RETRIEVAL · VOICE", "color": "#6B4EFF",
+        "blurb": "Hybrid FAISS + BM25 search fused with Reciprocal Rank Fusion over 11,298 passages, "
+                 "with speech-to-text in 15 Indian languages and verified, extractive answers.",
+        "metric": ("24.55 ms", "P50 latency on a 200 ms budget"),
+        "stack": ["Python", "FastAPI", "FAISS", "BM25", "React"],
+    },
+    {
+        "name": "Socratic AI", "repo": None, "kicker": "FINE-TUNING · SAFETY", "color": "#D9481F",
+        "blurb": "Qwen2.5-7B tuned with QLoRA and DPO so answer-withholding lives in the weights, "
+                 "served scale-to-zero on Modal with dynamic LoRA adapters.",
+        "metric": ("<2%", "answer leakage, 6 jailbreak vectors"),
+        "stack": ["Qwen2.5-7B", "QLoRA", "DPO", "PyTorch", "Modal"],
+    },
+    {
+        "name": "AcaEdge", "repo": None, "kicker": "PLATFORM · TEAM OF 6", "color": "#0E8F69",
+        "blurb": "Multi-role NBA accreditation platform for MIT Bengaluru: CO-PO attainment, marks "
+                 "pipelines and Index 1–11 reports. I delivered the complete frontend.",
+        "metric": ("4 roles", "under review for campus-wide rollout"),
+        "stack": ["React", "TypeScript", "Node.js", "SQL", "Azure"],
+    },
+    {
+        "name": "AI-PR-Reviewer", "repo": "ai-pr-reviewer", "kicker": "LLM TOOLING", "color": "#3178C6",
+        "blurb": "Local-first REST service that reviews GitHub PR diffs for bugs and vulnerabilities "
+                 "with diff-aware prompting, in modular, unit-tested layers.",
+        "metric": None,
+        "stack": ["Python", "FastAPI", "React", "Gemini API"],
+    },
+    {
+        "name": "ORCA", "repo": "ORCA", "kicker": "MULTI-AGENT · SIH", "color": "#0B7A8C",
+        "blurb": "Marine ecosystem reasoning with collaborative agents: turns natural-language "
+                 "questions into evidence-backed, safety-checked decisions for coastal India.",
+        "metric": None,
+        "stack": ["TypeScript", "Python", "Multi-agent"],
+    },
+    {
+        "name": "ISL Platform", "repo": "isl", "kicker": "VISION · ACCESSIBILITY", "color": "#B4579A",
+        "blurb": "Indian Sign Language recognition and translation platform, "
+                 "with a FastAPI backend serving the recognition pipeline.",
+        "metric": None,
+        "stack": ["Python", "FastAPI", "Computer vision"],
+    },
+]
+
+TIMELINE = [
+    ("Jul 2024", "MIT Bengaluru", "Started B.E. in Computer Engineering", False),
+    ("2024", "First place", "UI/UX Design Sprint, TechSolstice '24", False),
+    ("Feb 2025", "Graphic Designer", "Branding for 10+ events, Tech Solstice '25", False),
+    ("2025", "First place, again", "UI/UX Design Sprint, TechSolstice '25", False),
+    ("Aug 2025", "UI/UX Designer", "Crescentia One · Figma, Agile, usability tests", False),
+    ("May 2028", "Graduating", "B.E. Computer Engineering", True),
+]
+
+STACK = [
+    ("LANGUAGES", "#19181D", ["Python", "TypeScript", "JavaScript", "Java", "SQL"]),
+    ("ML & RETRIEVAL", "#6B4EFF", ["PyTorch", "Transformers", "PEFT / QLoRA", "DPO", "FAISS", "BM25", "E5"]),
+    ("BACKEND & CLOUD", "#0E8F69", ["FastAPI", "Node.js", "Express", "Azure", "Firebase", "Modal", "Vercel", "GitHub Actions"]),
+    ("FRONTEND & DESIGN", "#D9481F", ["React", "Vite", "Figma", "Design systems", "Usability testing"]),
+    ("DATA", "#3178C6", ["SQL schema design", "MongoDB"]),
+]
+
+LINKEDIN = "https://www.linkedin.com/in/sourish-sri-vignesh-s"
 
 # ------------------------------------------------------------------ palette
 PAPER = "#F6F2EA"
@@ -93,7 +167,7 @@ BASE_CSS = """
 .pop{animation:pop .45s cubic-bezier(.2,.8,.2,1) both}
 .grow{transform-box:fill-box;transform-origin:bottom;animation:grow .9s cubic-bezier(.2,.8,.2,1) both}
 .swing{transform-box:fill-box;transform-origin:50% 100%;animation:swing 1.1s cubic-bezier(.2,.8,.2,1) both}
-.ring{transform-box:fill-box;transform-origin:center;animation:pulse 2.6s ease-out infinite both}
+.ring{transform-box:fill-box;transform-origin:center;opacity:0;animation:pulse 2.6s ease-out infinite}
 .beat{transform-box:fill-box;transform-origin:center;animation:beat 1.6s ease-in-out infinite}
 .nudge{animation:nudge 3.2s ease-in-out infinite}
 .sweep{animation:sweep 6s cubic-bezier(.45,0,.2,1) infinite both}
@@ -138,20 +212,21 @@ def fmt_date(s):
     return f"{dt.day} {MONTHS[dt.month - 1]} {dt.year}"
 
 
-def count_up(x, y, value, cls, fill, start, size, anchor="start", suffix=""):
+def count_up(x, y, value, cls, fill, start, size, anchor="start", suffix="", prefix="", decimals=0):
     """Count from 0 to value with 18 frames; CSS can't change text, so each
     frame is its own <text> shown for 50 ms."""
     frames = 18
     out = []
     for i in range(frames):
         t = i / (frames - 1)
-        v = round(value * (1 - (1 - t) ** 3))
+        v = value * (1 - (1 - t) ** 3)
+        v = round(v, decimals) if decimals else round(v)
         delay = start + i * 0.05
         last = i == frames - 1
         klass = "cl" if last else "cf"
         out.append(
             f'<text x="{x}" y="{y}" class="{cls} {klass}" font-size="{size}" fill="{fill}" '
-            f'text-anchor="{anchor}"{d(delay)}>{v:,}{suffix}</text>'
+            f'text-anchor="{anchor}"{d(delay)}>{escape(prefix)}{v:,.{decimals}f}{escape(suffix)}</text>'
         )
     return "\n".join(out)
 
@@ -196,7 +271,7 @@ def hero(stats, repos, portrait):
 
     # header line
     b.append(f'<text x="44" y="50" class="mm fade" font-size="11" letter-spacing="1.6" fill="{MUTED}"{d(0)}>'
-             f'{escape(USER.upper())}  /  README</text>')
+             f'{escape(FULL_NAME.upper())}  ·  @{escape(USER.upper())}</text>')
 
     # name with a violet shine sweeping across it every few seconds
     b.append('<defs><mask id="shine" maskUnits="userSpaceOnUse" x="0" y="0" width="860" height="340">'
@@ -373,27 +448,161 @@ def wrap(text, width, max_lines):
     return lines
 
 
-def repo_card(r, i):
-    W, H = 420, 168
-    lang = r.get("language") or "Code"
-    lc = LANG_COLORS.get(lang, MUTED)
-    start = 0.3 + i * 0.12
+def chip(x, y, text, h=22, fs=10.5, fill=PANEL, stroke="none", color=INK, dot=None):
+    """A rounded label; returns (svg, width)."""
+    pad = 11
+    w = len(text) * fs * 0.6 + pad * 2 + (12 if dot else 0)
+    out = f'<rect x="{x:.1f}" y="{y}" width="{w:.1f}" height="{h}" rx="{h / 2}" fill="{fill}" stroke="{stroke}"/>'
+    tx = x + pad
+    if dot:
+        out += f'<circle cx="{x + pad + 3:.1f}" cy="{y + h / 2}" r="3.2" fill="{dot}"/>'
+        tx += 12
+    out += (f'<text x="{tx:.1f}" y="{y + h / 2 + fs * 0.36:.1f}" class="mono" font-size="{fs}" '
+            f'fill="{color}">{escape(text)}</text>')
+    return out, w
+
+
+def project_card(p, repo, i):
+    W, H = 420, 252
+    c = p["color"]
+    start = 0.2 + (i % 2) * 0.12 + (i // 2) * 0.1
     b = [f'<g class="rise"{d(start)}>', card_bg(W, H)]
-    b.append(f'<text x="28" y="50" class="serif" font-size="26" fill="{INK}">{escape(r["name"])}</text>')
+    b.append(f'<rect x="28" y="33" width="8" height="8" rx="2" fill="{c}"/>')
+    b.append(f'<text x="44" y="41" class="mm" font-size="10.5" letter-spacing="1.4" fill="{c}">{escape(p["kicker"])}</text>')
+    if repo:
+        b.append(f'<text x="{W - 28}" y="41" text-anchor="end" class="mono" font-size="10" fill="{FAINT}">'
+                 f'updated {fmt_date(repo["pushed_at"])}</text>')
+    b.append(f'<text x="27" y="78" class="serif" font-size="28" fill="{INK}">{escape(p["name"])}</text>')
     b.append(f'<g class="nudge" style="animation-delay:{start + 1.2:.2f}s">'
-             f'<path d="M{W - 40} 44l11-11M{W - 37} 33h8v8" stroke="{MUTED}" stroke-width="1.6" stroke-linecap="round"/></g>')
-    desc = r.get("description") or "No description yet."
-    for j, line in enumerate(wrap(desc, 52, 3)):
-        b.append(f'<text x="28" y="{80 + j * 18}" class="mono" font-size="11.5" fill="{MUTED}">{escape(line)}</text>')
-    meta_y = H - 24
-    b.append(f'<circle cx="33" cy="{meta_y - 4}" r="5" fill="{lc}"/>')
-    meta = f"{lang}"
-    if r.get("stars"):
-        meta += f"  ·  ★ {r['stars']}"
-    meta += f"  ·  updated {fmt_date(r['pushed_at'])}"
-    b.append(f'<text x="46" y="{meta_y}" class="mono" font-size="11" fill="{INK}">{escape(meta)}</text>')
+             f'<path d="M{W - 40} 72l11-11M{W - 37} 61h8v8" stroke="{MUTED}" stroke-width="1.6" stroke-linecap="round"/></g>')
+    for j, line in enumerate(wrap(p["blurb"], 54, 3)):
+        b.append(f'<text x="28" y="{106 + j * 17}" class="mono" font-size="11" fill="{MUTED}">{escape(line)}</text>')
+    if p.get("metric"):
+        val, label = p["metric"]
+        b.append(f'<text x="27" y="183" class="serif pop fb" font-size="26" fill="{c}"{d(start + 0.5)}>{escape(val)}</text>')
+        b.append(f'<text x="{28 + len(val) * 12.5 + 12:.0f}" y="181" class="mono" font-size="10.5" fill="{INK}">{escape(label)}</text>')
+    elif repo:
+        lang = repo.get("language") or "Code"
+        b.append(f'<circle cx="33" cy="177" r="5" fill="{LANG_COLORS.get(lang, MUTED)}"/>')
+        b.append(f'<text x="46" y="181" class="mono" font-size="11" fill="{INK}">{escape(lang)}  ·  public repo on GitHub</text>')
+    x = 28
+    for j, t in enumerate(p["stack"]):
+        svg_, w = chip(x, 206, t)
+        b.append(f'<g class="pop fb"{d(start + 0.6 + j * 0.06)}>{svg_}</g>')
+        x += w + 6
     b.append('</g>')
-    return svg(W, H, "\n".join(b), fonts=("serif", "mono"))
+    return svg(W, H, "\n".join(b), fonts=("serif", "mono", "mono-m"))
+
+
+def numbers():
+    W, H = 860, 206
+    b = [card_bg(W, H)]
+    b.append(f'<text x="40" y="52" class="serif rise" font-size="28" fill="{INK}"{d(0.1)}>By the numbers</text>')
+    b.append(f'<text x="{W - 40}" y="50" text-anchor="end" class="mono fade" font-size="11.5" fill="{MUTED}"{d(0.2)}>'
+             f'projects, benchmarks &amp; competitions</text>')
+    colors = [VIOLET, "#D9481F", GREEN, INK, "#3178C6"]
+    cw = (W - 80) / len(NUMBERS)
+    for i, (val, dec, pre, suf, l1, l2) in enumerate(NUMBERS):
+        x = 40 + i * cw
+        if i:
+            b.append(f'<line x1="{x - 14:.1f}" y1="88" x2="{x - 14:.1f}" y2="170" stroke="{LINE}" class="fade"{d(0.3)}/>')
+        b.append(count_up(f"{x:.1f}", 124, val, "serif", colors[i % len(colors)], 0.35 + i * 0.12, 30,
+                          prefix=pre, suffix=suf, decimals=dec))
+        b.append(f'<text x="{x:.1f}" y="150" class="mm fade" font-size="10.5" fill="{INK}"{d(0.4 + i * 0.12)}>{escape(l1)}</text>')
+        b.append(f'<text x="{x:.1f}" y="168" class="mono fade" font-size="10" fill="{MUTED}"{d(0.45 + i * 0.12)}>{escape(l2)}</text>')
+    return svg(W, H, "\n".join(b), fonts=("serif", "mono", "mono-m"))
+
+
+def timeline():
+    W, H = 860, 300
+    css = ("@keyframes draw{from{stroke-dashoffset:var(--len)}to{stroke-dashoffset:0}}"
+           ".draw{animation:draw 1.6s cubic-bezier(.45,0,.2,1) both}")
+    b = [card_bg(W, H)]
+    b.append(f'<text x="40" y="52" class="serif rise" font-size="28" fill="{INK}"{d(0.1)}>Timeline</text>')
+    b.append(f'<text x="{W - 40}" y="50" text-anchor="end" class="mono fade" font-size="11.5" fill="{MUTED}"{d(0.2)}>'
+             f'2024 → 2028</text>')
+    ay, n = 172, len(TIMELINE)
+    xs = [110 + k * (640 / (n - 1)) for k in range(n)]
+    solid = xs[-2] - xs[0] + 30
+    b.append(f'<path d="M{xs[0] - 30} {ay}H{xs[-2]}" stroke="{INK}" stroke-width="1.5" stroke-dasharray="{solid:.0f}" '
+             f'class="draw" style="--len:{solid:.0f}px;animation-delay:.3s"/>')
+    b.append(f'<path d="M{xs[-2]} {ay}H{xs[-1] + 30}" stroke="{FAINT}" stroke-width="1.5" stroke-dasharray="4 5" class="fade"{d(1.8)}/>')
+    for k, (when, title, sub, future) in enumerate(TIMELINE):
+        x = xs[k]
+        t0 = 0.4 + (k / (n - 1)) * 1.4
+        above = k % 2 == 0
+        b.append(f'<line x1="{x}" y1="{ay - 10 if above else ay + 10}" x2="{x}" y2="{ay - 24 if above else ay + 24}" '
+                 f'stroke="{LINE}" stroke-width="1.5" class="fade"{d(t0)}/>')
+        if future:
+            b.append(f'<circle cx="{x}" cy="{ay}" r="6" fill="{PAPER}" stroke="{VIOLET}" stroke-width="2" class="pop fb"{d(t0)}/>')
+        else:
+            b.append(f'<circle cx="{x}" cy="{ay}" r="6" fill="{VIOLET if k == n - 2 else INK}" class="pop fb"{d(t0)}/>')
+        if k == n - 2:
+            b.append(f'<circle cx="{x}" cy="{ay}" r="6" fill="none" stroke="{VIOLET}" stroke-width="1.5" class="ring" '
+                     f'style="animation-delay:{t0 + 0.6:.2f}s"/>')
+        lines = wrap(sub, 30, 2)
+        if above:
+            # stack upwards from the stem so 1- and 2-line subs both sit snug
+            base = ay - 34
+            ys_sub = [base - 15 * (len(lines) - 1 - j) for j in range(len(lines))]
+            y_title = ys_sub[0] - 19
+            y_when = y_title - 21
+        else:
+            y_when = ay + 42
+            y_title = y_when + 22
+            ys_sub = [y_title + 19 + 15 * j for j in range(len(lines))]
+        g = [f'<text x="{x}" y="{y_when}" text-anchor="middle" class="mm" font-size="10.5" letter-spacing="1" fill="{VIOLET}">{escape(when.upper())}</text>',
+             f'<text x="{x}" y="{y_title}" text-anchor="middle" class="serif" font-size="18" fill="{INK}">{escape(title)}</text>']
+        for j, line in enumerate(lines):
+            g.append(f'<text x="{x}" y="{ys_sub[j]}" text-anchor="middle" class="mono" font-size="10.2" fill="{MUTED}">{escape(line)}</text>')
+        b.append(f'<g class="rise"{d(t0 + 0.1)}>{"".join(g)}</g>')
+    return svg(W, H, "\n".join(b), fonts=("serif", "mono", "mono-m"), css=css)
+
+
+def stack():
+    W = 860
+    b, y, k = [], 84, 0
+    x0, xmax = 214, W - 40
+    for label, color, items in STACK:
+        b.append(f'<text x="40" y="{y + 16}" class="mm fade" font-size="10.5" letter-spacing="1.2" fill="{color}"{d(0.2 + k * 0.03)}>{escape(label)}</text>')
+        x = x0
+        for t in items:
+            w = len(t) * 10.5 * 0.6 + 22 + 12
+            if x + w > xmax:
+                x, y = x0, y + 32
+            svg_, w = chip(x, y, t, h=24, fill="#FBF8F2", stroke=LINE, dot=color)
+            b.append(f'<g class="pop fb"{d(0.3 + k * 0.035)}>{svg_}</g>')
+            x += w + 7
+            k += 1
+        y += 42
+    H = y + 8
+    head = [card_bg(W, H),
+            f'<text x="40" y="52" class="serif rise" font-size="28" fill="{INK}"{d(0.1)}>Toolbox</text>',
+            f'<text x="{W - 40}" y="50" text-anchor="end" class="mono fade" font-size="11.5" fill="{MUTED}"{d(0.2)}>'
+            f'what I reach for</text>']
+    return svg(W, H, "\n".join(head + b), fonts=("serif", "mono", "mono-m"))
+
+
+def connect():
+    W, H = 860, 160
+    b = [card_bg(W, H)]
+    b.append(f'<text x="40" y="76" class="serif rise" font-size="32" fill="{INK}"{d(0.1)}>Let’s build something '
+             f'<tspan class="it" fill="{VIOLET}">thoughtful.</tspan></text>')
+    b.append(f'<text x="42" y="108" class="mono rise" font-size="12" fill="{MUTED}"{d(0.25)}>'
+             f'Design-minded engineer · GenAI &amp; full-stack · Bengaluru, India</text>')
+    b.append(f'<text x="42" y="130" class="mono rise" font-size="11" fill="{FAINT}"{d(0.35)}>'
+             f'in/sourish-sri-vignesh-s  ·  github.com/{escape(USER)}</text>')
+    bx, by, bw, bh = W - 40 - 220, 56, 220, 48
+    b.append(f'<rect x="{bx}" y="{by}" width="{bw}" height="{bh}" rx="{bh / 2}" fill="none" stroke="{VIOLET}" '
+             f'stroke-width="2" class="ring halo"/>')
+    b.append(f'<g class="pop fb"{d(0.5)}>'
+             f'<rect x="{bx}" y="{by}" width="{bw}" height="{bh}" rx="{bh / 2}" fill="{INK}"/>'
+             f'<text x="{bx + 24}" y="{by + 29}" class="mm" font-size="12.5" fill="{CREAM}">Connect on LinkedIn</text>'
+             f'<g class="nudge" style="animation-delay:1.4s"><path d="M{bx + bw - 40} {by + 30}l10-10M{bx + bw - 37} {by + 20}h7v7" '
+             f'stroke="{CREAM}" stroke-width="1.7" stroke-linecap="round"/></g></g>')
+    css = ("@keyframes halo{0%{opacity:.6;transform:scale(1)}100%{opacity:0;transform:scale(1.12,1.5)}}"
+           ".halo{animation:halo 2.8s ease-out 1.2s infinite}")
+    return svg(W, H, "\n".join(b), fonts=("serif", "serif-i", "mono", "mono-m"), css=css)
 
 
 # ------------------------------------------------------------------ main
@@ -404,21 +613,26 @@ def main():
     portrait_file = ROOT / "data" / "portrait.txt"
     portrait = portrait_file.read_text(encoding="utf-8").splitlines() if portrait_file.exists() else []
     stats = contribution_stats(days)
+    by_name = {r["name"]: r for r in repos}
 
     OUT.mkdir(exist_ok=True)
     files = {
         "hero.svg": hero(stats, repos, portrait),
+        "numbers.svg": numbers(),
         "graph.svg": graph(days, stats),
         "activity.svg": activity(stats),
+        "timeline.svg": timeline(),
+        "stack.svg": stack(),
+        "connect.svg": connect(),
     }
     for i, t in enumerate(TILES):
         files[f"tile-{t['key']}.svg"] = tile(t, i)
-    by_name = {r["name"]: r for r in repos}
-    for i, name in enumerate(FEATURED):
-        r = by_name.get(name) or {"name": name, "description": "", "language": "", "stars": 0,
-                                  "pushed_at": date.today().isoformat()}
-        files[f"repo-{i + 1}.svg"] = repo_card(r, i)
+    for i, p in enumerate(PROJECTS):
+        files[f"project-{i + 1}.svg"] = project_card(p, by_name.get(p["repo"]) if p["repo"] else None, i)
 
+    for stale in OUT.glob("*.svg"):
+        if stale.name not in files:
+            stale.unlink()
     for name, content in files.items():
         (OUT / name).write_text(content, encoding="utf-8", newline="\n")
     print(f"rendered {len(files)} cards into cards/{' (static)' if STATIC else ''}")

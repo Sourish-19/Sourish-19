@@ -3,20 +3,20 @@
   "public_repos": 16,
   "repos": [
     {
-      "name": "Sourish-19",
-      "description": "",
-      "language": "Python",
-      "stars": 0,
-      "pushed_at": "2026-11-26T16:51:53Z",
-      "url": "https://github.com/Sourish-19/Sourish-19"
-    },
-    {
       "name": "rock-paper-scissors",
       "description": "",
       "language": "HTML",
       "stars": 1,
-      "pushed_at": "2026-10-19T05:06:44Z",
+      "pushed_at": "2026-11-28T06:37:57Z",
       "url": "https://github.com/Sourish-19/rock-paper-scissors"
+    },
+    {
+      "name": "Sourish-19",
+      "description": "",
+      "language": "Python",
+      "stars": 0,
+      "pushed_at": "2026-11-27T16:37:59Z",
+      "url": "https://github.com/Sourish-19/Sourish-19"
     },
     {
       "name": "isl",
